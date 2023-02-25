@@ -3,7 +3,7 @@ const FormAutoFill = new Vue({
   data: {
 
     // Google Apps Script 部署為網路應用程式後的 URL
-    gas: 'https://script.google.com/macros/s/AKfycbwyY7oLpoZ4lbcIwIWniLZ8U_pY8e7YBK9fakeszgR_77S2u1SV/exec',
+    gas: 'https://script.google.com/macros/s/AKfycbzRbLL7o4Mmlv_UyvfKuS4q3fjAXvHiZU1bQEZf-Wuu46LiHm905HUSEQlATuDnAsi7/exec',
 
     id: '',
 
@@ -14,16 +14,13 @@ const FormAutoFill = new Vue({
     person: {},
 
     // Google Form 的 action URL
-    formAction: 'https://docs.google.com/forms/u/0/d/e/1FAIpQLSeNBnd-yVJ7_-tMq5xaQrvt0j18UtabCFBTM0Eu2O3ivDecuQ/formResponse',
+    formAction: 'https://docs.google.com/forms/d/e/1FAIpQLSdsDWa1ifELKd5_0vimkKXaIzXrvA8DvAzPtPAmlyEDG4nsFg/formResponse',
     
     // Google Form 各個 input 的 name
     input: {
-      id: 'entry.1815052017',
-      name: 'entry.1543576845',
-      gender: 'entry.892230025',
-      phone: 'entry.1003128242',
-      site: 'entry.260985931',
-      msg: 'entry.1782841550'
+      id: 'entry.1532467198',
+      name: 'entry.627327370',
+      phone: 'entry.694801103'
     },
 
     // loading 效果要不要顯示
@@ -32,15 +29,15 @@ const FormAutoFill = new Vue({
   methods: {
     // ID 限填 4 碼
     limitIdLen(val) {
-      if(val.length > 4) {
-        return this.id =  this.id.slice(0, 4);
+      if(val.length > 10) {
+        return this.id =  this.id.slice(0, 10);
       }
     },
     // 送出表單
     submit() {
       // 再一次判斷是不是可以送出資料
       if(this.person.name !== undefined) {
-        let params = `${this.input.id}=${this.person.id}&${this.input.name}=${this.person.name}&${this.input.gender}=${this.person.gender}&${this.input.phone}=${this.person.phone}&${this.input.site}=${this.person.site}&${this.input.msg}=${this.person.message || '無'}`;
+        let params = `${this.input.id}=${this.person.id}&${this.input.name}=${this.person.name}&${this.input.phone}=${this.person.phone}`;
         fetch(this.formAction + '?' + params, {
           method: 'POST'
         }).catch(err => {
@@ -54,7 +51,7 @@ const FormAutoFill = new Vue({
   watch: {
     id: function(val) {
       // ID 輸入到 4 碼就查詢資料
-      if(val.length === 4) {
+      if(val.length === 10) {
 
         // this.persons 裡沒這筆資料，才 POST
         if(this.persons[this.id] === undefined) {
