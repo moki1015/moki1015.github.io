@@ -1,0 +1,87 @@
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!--   bootstrap   -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="./style.css">
+    <!--   bootstrap   -->
+    <title>表單分數即時回饋</title>
+</head>
+
+<body>
+    <div class="container">
+
+        <h1 class="title">表單分數即時回饋</h1>
+
+        <div class="intro">
+            <p>此為 google 表單分數即時回饋的示範平台，請先點選下方「填寫表單」以填寫問卷，問卷最後會要求你輸入 <b>Token</b>, 此 <b>Token</b> 是用來查詢問卷分數的，請將其記下。
+            </p>
+        </div>
+
+        <!-- Button trigger modal: gsheet -->
+        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#gsheet">
+            填寫表單
+            </button>
+
+
+        <!-- Modal: gsheet -->
+        <div class="modal fade" id="gsheet" tabindex="-1" role="dialog" aria-labelledby="gsheetTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="gsheetTitle">google 表單</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+                    </div>
+                    <div class="modal-body">
+                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeE-ke7yhlU3XRDIhw7vRL-mnYLi-jTOYF8Pz4ZLINjV53z2A/viewform?embedded=true" style="position: relative; height: 360px; width: 100%;" frameborder="0" marginheight="0" marginwidth="0">載入中…</iframe>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <br><br><br>
+        <div>
+            <p>以下按鈕是 DataCamp Light, 為輔助程式語言教學與學習的工具，可在其中執行 code。</p>
+            
+            <p>開啟後 DataCamp Light 已預先讀入資料。您僅需於<code>score()</code>中輸入金鑰。<br>例如，若您於問卷中 Token 那題填寫「abcde123」，請輸入<code>score("abcde123")</code>。若查無結果，請按查詢視窗右下方<b>Reload</b>按鈕。
+            </p>
+        </div>
+
+
+        <!-- Button trigger modal: search -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#search">
+            查詢結果
+            </button>
+
+        <!-- Modal: search -->
+        <div class="modal fade" id="search" tabindex="-1" role="dialog" aria-labelledby="searchTitle" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="searchTitle">google 表單</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+                    </div>
+                    <div class="modal-body">
+                        <iframe src="./search.html" style="position: relative; height: 380px; width: 100%;" frameborder="0" marginheight="0" marginwidth="0">載入中…</iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
