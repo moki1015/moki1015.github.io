@@ -44,34 +44,19 @@
           <div class="double-bounce2"></div>
         </div>
       </div>
-      <section class="kv w-640"><img src="https://picsum.photos/640/360" width="640" height="360" alt="主視覺"/></section>
       <section class="form w-640">
         <div class="text-center">
-          <h1>Google表單，輸入ID後自動帶入其它欄位資料</h1>
-          <p>筆記文：<a href="https://letswrite.tw/google-forms-id-data/" target="_blank">Let's Write</a></p>
+          <h1>Google基本資料</h1>
         </div>
         <div class="form-group">
-          <label for="main_id">請輸入 ID（0101 - 0112）</label>
-          <input class="form-control" id="main_id" type="number" v-model="id" @input="limitIdLen(id)"/>
+          <label for="main_id">輸入ID</label>
+          <input class="form-control" id="main_id" type="text" v-model="id" @input="limitIdLen(id)"/>
         </div>
         <div class="two-col">
           <div class="col">
             <div class="form-group">
               <label for="name">姓名</label>
               <div class="prepend">
-                <div class="pre male" v-if="person.gender == '男'">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                    <path fill="none" d="M0 0h24v24H0z"></path>
-                    <path fill="#00A7E5" d="M18.586 5H14V3h8v8h-2V6.414l-3.537 3.537a7.5 7.5 0 1 1-1.414-1.414L18.586 5z"></path>
-                  </svg>
-                </div>
-                <div class="pre female" v-if="person.gender == '女'">
-                  <female></female>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-                    <path fill="none" d="M0 0h24v24H0z"></path>
-                    <path fill="#E91E63" d="M11 15.934A7.501 7.501 0 0 1 12 1a7.5 7.5 0 0 1 1 14.934V18h5v2h-5v4h-2v-4H6v-2h5v-2.066z"></path>
-                  </svg>
-                </div>
                 <input class="form-control" id="name" type="text" v-model="person.name" disabled="disabled"/>
               </div>
             </div>
@@ -82,14 +67,6 @@
               <input class="form-control" id="phone" type="tel" v-model="person.phone" disabled="disabled"/>
             </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label for="site">地址</label>
-          <input class="form-control" id="site" type="text" v-model="person.site" disabled="disabled"/>
-        </div>
-        <div class="form-group">
-          <label for="message">備註</label>
-          <input class="form-control" id="message" type="text" v-model="person.message" :disabled="person.name == undefined"/>
         </div>
         <div class="submit"><a href="#" :class="{ disabled: person.name == undefined }" @click.prevent="submit">送出</a></div>
       </section>
