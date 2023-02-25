@@ -1,87 +1,100 @@
+﻿<!DOCTYPE html>
 <html lang="zh-TW">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!--   bootstrap   -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="./style.css">
-    <!--   bootstrap   -->
-    <title>表單分數即時回饋</title>
-</head>
-
-<body>
-    <div class="container">
-
-        <h1 class="title">表單分數即時回饋</h1>
-
-        <div class="intro">
-            <p>此為 google 表單分數即時回饋的示範平台，請先點選下方「填寫表單」以填寫問卷，問卷最後會要求你輸入 <b>Token</b>, 此 <b>Token</b> 是用來查詢問卷分數的，請將其記下。
-            </p>
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Google表單，輸入ID後自動帶入其它欄位資料 - August - Let's Write</title>
+    <link rel="canonical" href="https://letswritetw.github.io/letswrite-google-forms-id-data/"/>
+    <meta property="og:url" content="https://letswritetw.github.io/letswrite-google-forms-id-data/"/>
+    <meta property="fb:app_id" content="2435108729902508"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:site_name" content="Let's Write"/>
+    <meta property="og:title" content="Google表單，輸入ID後自動帶入其它欄位資料 - August - Let's Write"/>
+    <meta itemprop="name" content="Google表單，輸入ID後自動帶入其它欄位資料 - August - Let's Write"/>
+    <meta name="description" content="文章大綱"/>
+    <meta property="og:description" content="文章大綱"/>
+    <meta itemprop="description" content="文章大綱"/>
+    <meta itemprop="image" content="https://letswritetw.github.io/letswrite-google-forms-id-data/fb.jpg"/>
+    <meta property="og:image" content="https://letswritetw.github.io/letswrite-google-forms-id-data/fb.jpg"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
+    <meta property="og:image:alt" content="Google表單，輸入ID後自動帶入其它欄位資料"/>
+    <link rel="shortcut icon" href="https://letswritetw.github.io/letswritetw/dist/img/logo_512.png"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"/>
+    <link rel="stylesheet" href="dist/style.min.css"/>
+    <!-- Google Tag Manager-->
+    <script>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-PGQ9WQT');
+    </script>
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript)-->
+    <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGQ9WQT" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <div class="container" id="app">
+      <div class="double-wrap" :class="{ hide: !loading }">
+        <div class="double">
+          <div class="double-bounce1"></div>
+          <div class="double-bounce2"></div>
         </div>
-
-        <!-- Button trigger modal: gsheet -->
-        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#gsheet">
-            填寫表單
-            </button>
-
-
-        <!-- Modal: gsheet -->
-        <div class="modal fade" id="gsheet" tabindex="-1" role="dialog" aria-labelledby="gsheetTitle" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="gsheetTitle">google 表單</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-                    </div>
-                    <div class="modal-body">
-                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeE-ke7yhlU3XRDIhw7vRL-mnYLi-jTOYF8Pz4ZLINjV53z2A/viewform?embedded=true" style="position: relative; height: 360px; width: 100%;" frameborder="0" marginheight="0" marginwidth="0">載入中…</iframe>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
+      </div>
+      <section class="kv w-640"><img src="https://picsum.photos/640/360" width="640" height="360" alt="主視覺"/></section>
+      <section class="form w-640">
+        <div class="text-center">
+          <h1>Google表單，輸入ID後自動帶入其它欄位資料</h1>
+          <p>筆記文：<a href="https://letswrite.tw/google-forms-id-data/" target="_blank">Let's Write</a></p>
+        </div>
+        <div class="form-group">
+          <label for="main_id">請輸入 ID（0101 - 0112）</label>
+          <input class="form-control" id="main_id" type="number" v-model="id" @input="limitIdLen(id)"/>
+        </div>
+        <div class="two-col">
+          <div class="col">
+            <div class="form-group">
+              <label for="name">姓名</label>
+              <div class="prepend">
+                <div class="pre male" v-if="person.gender == '男'">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                    <path fill="#00A7E5" d="M18.586 5H14V3h8v8h-2V6.414l-3.537 3.537a7.5 7.5 0 1 1-1.414-1.414L18.586 5z"></path>
+                  </svg>
                 </div>
-            </div>
-        </div>
-
-
-        <br><br><br>
-        <div>
-            <p>以下按鈕是 DataCamp Light, 為輔助程式語言教學與學習的工具，可在其中執行 code。</p>
-            
-            <p>開啟後 DataCamp Light 已預先讀入資料。您僅需於<code>score()</code>中輸入金鑰。<br>例如，若您於問卷中 Token 那題填寫「abcde123」，請輸入<code>score("abcde123")</code>。若查無結果，請按查詢視窗右下方<b>Reload</b>按鈕。
-            </p>
-        </div>
-
-
-        <!-- Button trigger modal: search -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#search">
-            查詢結果
-            </button>
-
-        <!-- Modal: search -->
-        <div class="modal fade" id="search" tabindex="-1" role="dialog" aria-labelledby="searchTitle" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="searchTitle">google 表單</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-            </button>
-                    </div>
-                    <div class="modal-body">
-                        <iframe src="./search.html" style="position: relative; height: 380px; width: 100%;" frameborder="0" marginheight="0" marginwidth="0">載入中…</iframe>
-                    </div>
+                <div class="pre female" v-if="person.gender == '女'">
+                  <female></female>
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                    <path fill="none" d="M0 0h24v24H0z"></path>
+                    <path fill="#E91E63" d="M11 15.934A7.501 7.501 0 0 1 12 1a7.5 7.5 0 0 1 1 14.934V18h5v2h-5v4h-2v-4H6v-2h5v-2.066z"></path>
+                  </svg>
                 </div>
+                <input class="form-control" id="name" type="text" v-model="person.name" disabled="disabled"/>
+              </div>
             </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="phone">電話</label>
+              <input class="form-control" id="phone" type="tel" v-model="person.phone" disabled="disabled"/>
+            </div>
+          </div>
         </div>
+        <div class="form-group">
+          <label for="site">地址</label>
+          <input class="form-control" id="site" type="text" v-model="person.site" disabled="disabled"/>
+        </div>
+        <div class="form-group">
+          <label for="message">備註</label>
+          <input class="form-control" id="message" type="text" v-model="person.message" :disabled="person.name == undefined"/>
+        </div>
+        <div class="submit"><a href="#" :class="{ disabled: person.name == undefined }" @click.prevent="submit">送出</a></div>
+      </section>
     </div>
-</body>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+    <script src="dist/main.min.js"></script>
+  </body>
 </html>
