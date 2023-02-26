@@ -48,15 +48,10 @@
         <div class="text-center">
           <h1>Google基本資料測試</h1>
         </div>
-        
         <div class="form-group">
-        <select>
-    <option>選擇Id</option>
-    <option>F126144709</option>
-    <option>A226469431</option>
-</select>
-          </div>
-        
+          <label for="main_id">輸入ID</label>
+          <input class="form-control" id="main_id" type="text" v-model="id" @input="limitIdLen(id)"/>
+        </div>
         <div class="two-col">
           <div class="col">
             <div class="form-group">
