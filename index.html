@@ -40,29 +40,7 @@
           <h1>Google Test001</h1>
         </div>
         <div class="form-group">
-          <label for="main_id">輸入ID</label>
-          <input class="form-control" id="main_id" type="text" list="typelist" placeholder="選擇Id" v-model="id" @input="limitIdLen(id)"/>
-          <datalist id="typelist">
-            <option>F126144709</option>
-            <option>A226469431</option>
-          </datalist>
-        </div>
-        
-        <div class="two-col">
-          <div class="col">
-            <div class="form-group">
-              <label for="name">姓名</label>
-              <div class="prepend">
-                <input class="form-control" id="name" type="text" v-model="person.name" disabled="disabled"/>
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="form-group">
-              <label for="phone">電話</label>
-              <input class="form-control" id="phone" type="tel" v-model="person.phone" disabled="disabled"/>
-            </div>
-          </div>
+          <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdsDWa1ifELKd5_0vimkKXaIzXrvA8DvAzPtPAmlyEDG4nsFg/viewform?embedded=true" width="640" height="477" frameborder="0" marginheight="0" marginwidth="0">載入中…</iframe>
         </div>
         <div class="submit"><a href="#" :class="{ disabled: person.name == undefined }" @click.prevent="submit">送出</a></div>
       </section>
