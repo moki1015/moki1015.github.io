@@ -1,21 +1,14 @@
-<p>AI 機器人店員：<span id='hello'></span></p>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <!--2、在body中引入-->
+    <script src="main.js"></script>
+  <p>AI 機器人店員：<span id='hello'></span></p>
 <p>客人：我需要<input type="text" id="pizzaNum" class="tag">個 Pizza 還有<input type="text" id="beerNum" class="tag">杯啤酒。<input type="button" id="click" value="點餐完成">
 </p>
 <p>AI 機器人店員：<span id="ok"></span><span id="total"></span></p>
-<script>
-  function welcome(){
-    var hello = '歡迎光臨！請問想要點什麼呢？';
-    document.getElementById('hello').textContent = hello;
-}
-welcome();
-
-//點餐
-document.getElementById('click').onclick = function order(){
-  var count = '好的！沒有問題，我幫您算一下，這樣總共是';
-  var pizzaPrice = 300;
-  var beerPrice = 45;
-  var pizzaNum = parseInt(document.getElementById('pizzaNum').value);
-  var beerNum = parseInt(document.getElementById('beerNum').value);
-  document.getElementById('ok').textContent = count;
-  document.getElementById('total').textContent = (pizzaPrice * pizzaNum) + (beerPrice * beerNum)+'元'
-</script>
+</body>
+</html>
