@@ -59,6 +59,7 @@ const FormAutoFill = new Vue({
         var a = document.querySelector("iframe");
         var b = a.contentWindow.document;
         this.person.message = b.getElementByName("entry.627327370");
+        document.getElementById('message').textContent = 'total'
         
         
         // this.persons 裡沒這筆資料，才 POST
