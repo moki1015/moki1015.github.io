@@ -58,27 +58,7 @@ const FormAutoFill = new Vue({
         
         var a = document.querySelector("iframe");
         var b = a.contentWindow.document;
-        this.person.message = b.getElementByName("entry.627327370");
         document.getElementById('message').textContent = 'total'
-        
-        
-        // this.persons 裡沒這筆資料，才 POST
-        if(this.persons[this.id] === undefined) {
-          this.loading = true;
-          let uri = this.gas + '?id=' + this.id;
-          fetch(uri, {
-            method: 'POST'
-          }).then(res => res.json())
-            .then(res => {
-              this.persons[this.id] = res; // 把這次查詢的 id 結果存下來
-              this.person = res;
-              this.loading = false;
-            })
-        }
-        // this.persons 裡有資料就吐資料
-        else {
-          this.person = this.persons[this.id];
-        }
 
       }
     }
